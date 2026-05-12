@@ -1,0 +1,21 @@
+86e3d5f1c99308d0176be6a68691e88ba41ee1442ddf6809ea1b8ea52a96ffd6  synthetic_db.sqlite
+
+# This is the SHA-256 of synthetic_data/synthetic_db.sqlite produced by
+# the canonical run on the original dev machine using:
+#
+#   - Python 3.14 (Homebrew)
+#   - SEED = 42 (gen_data.py)
+#   - --n-patients all (uses every DE-SynPUF Sample 1 BENE_ID, ~116k)
+#   - DE-SynPUF Sample 1 + CMS Synthetic RIF 2023 inputs
+#
+# Equality of this hash on a fresh regeneration means the entire build
+# is byte-deterministic — a strong signal that the regenerated artifact
+# is faithful, but NOT strictly required for behavioral pass.
+#
+# Behavioral pass requires only:
+#   - 25/25 named tests pass in synthetic_data/tests/
+#   - row counts in evidence/row_counts_v1.json match within ±5%
+#
+# Different SQLite versions or different Python versions can produce
+# byte-different but behaviorally-identical output. Don't rely on the
+# hash as a hard gate.

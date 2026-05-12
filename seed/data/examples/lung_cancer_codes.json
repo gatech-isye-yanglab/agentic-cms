@@ -1,0 +1,436 @@
+{
+  "disease": "Lung Cancer (malignant neoplasm of bronchus and lung) \u2014 INTERIM reference derived from public databases",
+  "status": "INTERIM \u2014 derived from public reference databases. A clinically-validated authoritative list will supersede this when available.",
+  "sources_used_for_this_interim_set": [
+    "PhecodeX v1.0 vocabulary \u2014 phecode CA_102.1 'Malignant neoplasm of bronchus and lung', plus CA_114.42 (carcinoid) and CA_137.1 (benign) for optional inclusion",
+    "CDC ICD-10-CM FY2026 code descriptions \u2014 full C34.* leaf sweep",
+    "CMS ICD-9-CM v32 (FY2014 final) master descriptions \u2014 full 162.* leaf sweep",
+    "AHRQ CCSR v2026-1 category NEO022 'Respiratory cancers' \u2014 broader category included for reference"
+  ],
+  "how_to_use": "Use PhecodeX CA_102.1 codes as the primary cohort inclusion list \u2014 this matches the standard PheWAS convention for lung-cancer ascertainment. The C34.* and 162.* full-leaf sweeps are defensive (catch any leaf codes added post-PhecodeX). CA_114.42 and CA_137.1 subsections are available if the study wants to include carcinoid or benign neoplasms.",
+  "phecode_CA_102_1_primary_malignant": {
+    "phecode_label": "Malignant neoplasm of bronchus and lung (primary target)",
+    "icd10cm": [
+      {
+        "code": "C34.00",
+        "description": "Malignant neoplasm of unspecified main bronchus"
+      },
+      {
+        "code": "C34.10",
+        "description": "Malignant neoplasm of upper lobe, unspecified bronchus or lung"
+      },
+      {
+        "code": "C34.3",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "C34.8",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "C34.9",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "Z85.11",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "Z85.118",
+        "description": "Personal history of other malignant neoplasm of bronchus and lung"
+      },
+      {
+        "code": "D02.22",
+        "description": "Carcinoma in situ of left bronchus and lung"
+      },
+      {
+        "code": "C34.0",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "C34.1",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "C34.2",
+        "description": "Malignant neoplasm of middle lobe, bronchus or lung"
+      },
+      {
+        "code": "C34.32",
+        "description": "Malignant neoplasm of lower lobe, left bronchus or lung"
+      },
+      {
+        "code": "C34.82",
+        "description": "Malignant neoplasm of overlapping sites of left bronchus and lung"
+      },
+      {
+        "code": "C34.92",
+        "description": "Malignant neoplasm of unspecified part of left bronchus or lung"
+      },
+      {
+        "code": "D02.21",
+        "description": "Carcinoma in situ of right bronchus and lung"
+      },
+      {
+        "code": "C34",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "C34.02",
+        "description": "Malignant neoplasm of left main bronchus"
+      },
+      {
+        "code": "C34.12",
+        "description": "Malignant neoplasm of upper lobe, left bronchus or lung"
+      },
+      {
+        "code": "C34.31",
+        "description": "Malignant neoplasm of lower lobe, right bronchus or lung"
+      },
+      {
+        "code": "C34.81",
+        "description": "Malignant neoplasm of overlapping sites of right bronchus and lung"
+      },
+      {
+        "code": "C34.91",
+        "description": "Malignant neoplasm of unspecified part of right bronchus or lung"
+      },
+      {
+        "code": "D02.20",
+        "description": "Carcinoma in situ of unspecified bronchus and lung"
+      },
+      {
+        "code": "C34.01",
+        "description": "Malignant neoplasm of right main bronchus"
+      },
+      {
+        "code": "C34.11",
+        "description": "Malignant neoplasm of upper lobe, right bronchus or lung"
+      },
+      {
+        "code": "C34.30",
+        "description": "Malignant neoplasm of lower lobe, unspecified bronchus or lung"
+      },
+      {
+        "code": "C34.80",
+        "description": "Malignant neoplasm of overlapping sites of unspecified bronchus and lung"
+      },
+      {
+        "code": "C34.90",
+        "description": "Malignant neoplasm of unspecified part of unspecified bronchus or lung"
+      },
+      {
+        "code": "D02.2",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      }
+    ],
+    "icd9cm": [
+      {
+        "code": "162.5",
+        "description": "Malignant neoplasm of lower lobe, bronchus or lung"
+      },
+      {
+        "code": "162",
+        "description": "(leaf description not in CMS v32 ICD-9-CM dx file)"
+      },
+      {
+        "code": "162.4",
+        "description": "Malignant neoplasm of middle lobe, bronchus or lung"
+      },
+      {
+        "code": "V10.11",
+        "description": "Personal history of malignant neoplasm of bronchus and lung"
+      },
+      {
+        "code": "231.2",
+        "description": "Carcinoma in situ of bronchus and lung"
+      },
+      {
+        "code": "162.3",
+        "description": "Malignant neoplasm of upper lobe, bronchus or lung"
+      },
+      {
+        "code": "162.9",
+        "description": "Malignant neoplasm of bronchus and lung, unspecified"
+      },
+      {
+        "code": "162.2",
+        "description": "Malignant neoplasm of main bronchus"
+      },
+      {
+        "code": "162.8",
+        "description": "Malignant neoplasm of other parts of bronchus or lung"
+      }
+    ]
+  },
+  "phecode_CA_114_42_carcinoid": {
+    "phecode_label": "Carcinoid tumor of bronchus and lung",
+    "icd10cm": [
+      {
+        "code": "C7A.090",
+        "description": "Malignant carcinoid tumor of the bronchus and lung"
+      },
+      {
+        "code": "Z85.110",
+        "description": "Personal history of malignant carcinoid tumor of bronchus and lung"
+      },
+      {
+        "code": "D3A.090",
+        "description": "Benign carcinoid tumor of the bronchus and lung"
+      }
+    ],
+    "icd9cm": [
+      {
+        "code": "209.61",
+        "description": "Benign carcinoid tumor of the bronchus and lung"
+      },
+      {
+        "code": "209.21",
+        "description": "Malignant carcinoid tumor of the bronchus and lung"
+      }
+    ]
+  },
+  "phecode_CA_137_1_benign": {
+    "phecode_label": "Benign neoplasm of bronchus and lung",
+    "icd10cm": [
+      {
+        "code": "D14.30",
+        "description": "Benign neoplasm of unspecified bronchus and lung"
+      },
+      {
+        "code": "D14.32",
+        "description": "Benign neoplasm of left bronchus and lung"
+      },
+      {
+        "code": "D14.3",
+        "description": "(leaf description not in CDC FY2026 \u2014 may be category-level)"
+      },
+      {
+        "code": "D14.31",
+        "description": "Benign neoplasm of right bronchus and lung"
+      }
+    ],
+    "icd9cm": [
+      {
+        "code": "212.3",
+        "description": "Benign neoplasm of bronchus and lung"
+      }
+    ]
+  },
+  "full_C34_leaves_from_CDC_FY2026": [
+    {
+      "code": "C3400",
+      "description": "Malignant neoplasm of unspecified main bronchus"
+    },
+    {
+      "code": "C3401",
+      "description": "Malignant neoplasm of right main bronchus"
+    },
+    {
+      "code": "C3402",
+      "description": "Malignant neoplasm of left main bronchus"
+    },
+    {
+      "code": "C3410",
+      "description": "Malignant neoplasm of upper lobe, unspecified bronchus or lung"
+    },
+    {
+      "code": "C3411",
+      "description": "Malignant neoplasm of upper lobe, right bronchus or lung"
+    },
+    {
+      "code": "C3412",
+      "description": "Malignant neoplasm of upper lobe, left bronchus or lung"
+    },
+    {
+      "code": "C342",
+      "description": "Malignant neoplasm of middle lobe, bronchus or lung"
+    },
+    {
+      "code": "C3430",
+      "description": "Malignant neoplasm of lower lobe, unspecified bronchus or lung"
+    },
+    {
+      "code": "C3431",
+      "description": "Malignant neoplasm of lower lobe, right bronchus or lung"
+    },
+    {
+      "code": "C3432",
+      "description": "Malignant neoplasm of lower lobe, left bronchus or lung"
+    },
+    {
+      "code": "C3480",
+      "description": "Malignant neoplasm of overlapping sites of unspecified bronchus and lung"
+    },
+    {
+      "code": "C3481",
+      "description": "Malignant neoplasm of overlapping sites of right bronchus and lung"
+    },
+    {
+      "code": "C3482",
+      "description": "Malignant neoplasm of overlapping sites of left bronchus and lung"
+    },
+    {
+      "code": "C3490",
+      "description": "Malignant neoplasm of unspecified part of unspecified bronchus or lung"
+    },
+    {
+      "code": "C3491",
+      "description": "Malignant neoplasm of unspecified part of right bronchus or lung"
+    },
+    {
+      "code": "C3492",
+      "description": "Malignant neoplasm of unspecified part of left bronchus or lung"
+    }
+  ],
+  "full_162_leaves_from_CMS_v32_ICD9": [
+    {
+      "code": "1620",
+      "description": "Malignant neoplasm of trachea"
+    },
+    {
+      "code": "1622",
+      "description": "Malignant neoplasm of main bronchus"
+    },
+    {
+      "code": "1623",
+      "description": "Malignant neoplasm of upper lobe, bronchus or lung"
+    },
+    {
+      "code": "1624",
+      "description": "Malignant neoplasm of middle lobe, bronchus or lung"
+    },
+    {
+      "code": "1625",
+      "description": "Malignant neoplasm of lower lobe, bronchus or lung"
+    },
+    {
+      "code": "1628",
+      "description": "Malignant neoplasm of other parts of bronchus or lung"
+    },
+    {
+      "code": "1629",
+      "description": "Malignant neoplasm of bronchus and lung, unspecified"
+    }
+  ],
+  "CCSR_NEO022_respiratory_cancers_ICD10_members": [
+    {
+      "code": "C33",
+      "description": "Malignant neoplasm of trachea"
+    },
+    {
+      "code": "C3400",
+      "description": "Malignant neoplasm of unspecified main bronchus"
+    },
+    {
+      "code": "C3401",
+      "description": "Malignant neoplasm of right main bronchus"
+    },
+    {
+      "code": "C3402",
+      "description": "Malignant neoplasm of left main bronchus"
+    },
+    {
+      "code": "C3410",
+      "description": "Malignant neoplasm of upper lobe, unspecified bronchus or lung"
+    },
+    {
+      "code": "C3411",
+      "description": "Malignant neoplasm of upper lobe, right bronchus or lung"
+    },
+    {
+      "code": "C3412",
+      "description": "Malignant neoplasm of upper lobe, left bronchus or lung"
+    },
+    {
+      "code": "C342",
+      "description": "Malignant neoplasm of middle lobe, bronchus or lung"
+    },
+    {
+      "code": "C3430",
+      "description": "Malignant neoplasm of lower lobe, unspecified bronchus or lung"
+    },
+    {
+      "code": "C3431",
+      "description": "Malignant neoplasm of lower lobe, right bronchus or lung"
+    },
+    {
+      "code": "C3432",
+      "description": "Malignant neoplasm of lower lobe, left bronchus or lung"
+    },
+    {
+      "code": "C3480",
+      "description": "Malignant neoplasm of overlapping sites of unspecified bronchus and lung"
+    },
+    {
+      "code": "C3481",
+      "description": "Malignant neoplasm of overlapping sites of right bronchus and lung"
+    },
+    {
+      "code": "C3482",
+      "description": "Malignant neoplasm of overlapping sites of left bronchus and lung"
+    },
+    {
+      "code": "C3490",
+      "description": "Malignant neoplasm of unspecified part of unspecified bronchus or lung"
+    },
+    {
+      "code": "C3491",
+      "description": "Malignant neoplasm of unspecified part of right bronchus or lung"
+    },
+    {
+      "code": "C3492",
+      "description": "Malignant neoplasm of unspecified part of left bronchus or lung"
+    },
+    {
+      "code": "C384",
+      "description": "Malignant neoplasm of pleura"
+    },
+    {
+      "code": "C390",
+      "description": "Malignant neoplasm of upper respiratory tract, part unspecified"
+    },
+    {
+      "code": "C399",
+      "description": "Malignant neoplasm of lower respiratory tract, part unspecified"
+    },
+    {
+      "code": "D021",
+      "description": "Carcinoma in situ of trachea"
+    },
+    {
+      "code": "D0220",
+      "description": "Carcinoma in situ of unspecified bronchus and lung"
+    },
+    {
+      "code": "D0221",
+      "description": "Carcinoma in situ of right bronchus and lung"
+    },
+    {
+      "code": "D0222",
+      "description": "Carcinoma in situ of left bronchus and lung"
+    },
+    {
+      "code": "D023",
+      "description": "Carcinoma in situ of other parts of respiratory system"
+    },
+    {
+      "code": "D024",
+      "description": "Carcinoma in situ of respiratory system, unspecified"
+    }
+  ],
+  "hcpcs": {
+    "status": "not populated in interim \u2014 HCPCS choices (chemotherapy J-codes, radiation G-codes, lung biopsy) are protocol-specific.",
+    "hint": "When populated, look in ../databases/hcpcs/april-2026/HCPC2026_APR_ANWEB.txt for J-series (drug administration) and G-series (Medicare screening/procedures), and consult the lung cancer pipeline reference SQL for protocol-specific codes."
+  },
+  "cohort_constraints_placeholder": {
+    "note": "The diabetes example pipeline uses 7 SE states (AL/FL/GA/MS/NC/SC/TN), study period 2005\u20132018, with EL_DOB > 1980-01-01. Lung cancer study cohort constraints depend on the specific protocol and will differ."
+  },
+  "notes": [
+    "This interim list is derived from public reference databases (PhecodeX + CDC + CMS + AHRQ CCSR) and is intended as a starting point for protocol-specific refinement.",
+    "When a clinically-validated authoritative list is available, this file should be superseded (but retained in git history for audit).",
+    "Schema parallels examples/diabetes_codes.json where possible, with the interim status made explicit."
+  ],
+  "generated_at": "2026-04-17",
+  "generator": "icd_code_reference agent (Phase 2 \u2014 interim extraction from PhecodeX/CDC/CMS/CCSR)"
+}

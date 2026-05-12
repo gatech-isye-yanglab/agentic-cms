@@ -1,0 +1,311 @@
+{
+  "_comment": "CMS Medicaid diabetes cohort pipeline — complete table schema for all three eras. Used by Schema Agent to determine correct column names and joins.",
+
+  "source_tables": {
+    "_comment": "Six raw CMS Medicaid tables in cms_source. Every query must include state_key AND YR_NUM/RFRNC_YR filters (institutional partition requirement).",
+
+    "inpatient": {
+      "era": "MAX 2005-2012",
+      "type": "inpatient",
+      "years": [2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012],
+      "year_column": "YR_NUM",
+      "patient_id_column": "patient_id",
+      "columns": {
+        "patient_id":          {"type": "varchar(40)", "note": "lowercase"},
+        "BENE_ID":             {"type": "varchar(15)"},
+        "STATE_CD":            {"type": "varchar(2)"},
+        "state_key":           {"type": "int",    "note": "partition key — MUST filter"},
+        "YR_NUM":              {"type": "int",    "note": "year — MUST filter"},
+        "EL_DOB":              {"type": "date",   "note": "date of birth"},
+        "EL_SEX_CD":           {"type": "varchar(1)"},
+        "EL_RACE_ETHNCY_CD":   {"type": "varchar(1)"},
+        "srvc_bgn_dt":         {"type": "date"},
+        "srvc_end_dt":         {"type": "date"},
+        "DIAG_CD_1":           {"type": "varchar(8)", "note": "ICD-9 or ICD-10 diagnosis code"},
+        "DIAG_CD_2":           {"type": "varchar(8)"},
+        "DIAG_CD_3":           {"type": "varchar(8)"},
+        "DIAG_CD_4":           {"type": "varchar(8)"},
+        "DIAG_CD_5":           {"type": "varchar(8)"},
+        "DIAG_CD_6":           {"type": "varchar(8)"},
+        "DIAG_CD_7":           {"type": "varchar(8)"},
+        "DIAG_CD_8":           {"type": "varchar(8)"},
+        "DIAG_CD_9":           {"type": "varchar(8)"}
+      },
+      "diag_columns": ["DIAG_CD_1","DIAG_CD_2","DIAG_CD_3","DIAG_CD_4","DIAG_CD_5","DIAG_CD_6","DIAG_CD_7","DIAG_CD_8","DIAG_CD_9"],
+      "extraction_table": "Re_all_inpatient",
+      "extraction_procedure": "Re_all_inpatient_loop"
+    },
+
+    "inpatient1315": {
+      "era": "MAX 2013-2015",
+      "type": "inpatient",
+      "years": [2013, 2014, 2015],
+      "year_column": "YR_NUM",
+      "patient_id_column": "patient_id",
+      "columns": {
+        "patient_id":          {"type": "varchar(40)", "note": "lowercase"},
+        "BENE_ID":             {"type": "varchar(15)"},
+        "STATE_CD":            {"type": "varchar(2)"},
+        "state_key":           {"type": "int",    "note": "partition key — MUST filter"},
+        "YR_NUM":              {"type": "int",    "note": "year — MUST filter"},
+        "EL_DOB":              {"type": "date"},
+        "EL_SEX_CD":           {"type": "varchar(1)"},
+        "EL_RACE_ETHNCY_CD":   {"type": "varchar(1)"},
+        "srvc_bgn_dt":         {"type": "date"},
+        "srvc_end_dt":         {"type": "date"},
+        "DIAG_CD_1":           {"type": "varchar(8)"},
+        "DIAG_CD_2":           {"type": "varchar(8)"},
+        "DIAG_CD_3":           {"type": "varchar(8)"},
+        "DIAG_CD_4":           {"type": "varchar(8)"},
+        "DIAG_CD_5":           {"type": "varchar(8)"},
+        "DIAG_CD_6":           {"type": "varchar(8)"},
+        "DIAG_CD_7":           {"type": "varchar(8)"},
+        "DIAG_CD_8":           {"type": "varchar(8)"},
+        "DIAG_CD_9":           {"type": "varchar(8)"}
+      },
+      "diag_columns": ["DIAG_CD_1","DIAG_CD_2","DIAG_CD_3","DIAG_CD_4","DIAG_CD_5","DIAG_CD_6","DIAG_CD_7","DIAG_CD_8","DIAG_CD_9"],
+      "extraction_table": "Re_all_inpatient1315",
+      "extraction_procedure": "Re_all_inpatient1315_loop"
+    },
+
+    "other_therapy": {
+      "era": "MAX 2005-2012",
+      "type": "outpatient",
+      "years": [2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012],
+      "year_column": "YR_NUM",
+      "patient_id_column": "patient_id",
+      "columns": {
+        "patient_id":          {"type": "varchar(40)"},
+        "BENE_ID":             {"type": "varchar(15)"},
+        "STATE_CD":            {"type": "varchar(2)"},
+        "state_key":           {"type": "int",    "note": "partition key — MUST filter"},
+        "YR_NUM":              {"type": "int",    "note": "year — MUST filter"},
+        "EL_DOB":              {"type": "date"},
+        "EL_SEX_CD":           {"type": "varchar(1)"},
+        "EL_RACE_ETHNCY_CD":   {"type": "varchar(1)"},
+        "srvc_bgn_dt":         {"type": "date"},
+        "srvc_end_dt":         {"type": "date"},
+        "DIAG_CD_1":           {"type": "varchar(8)", "note": "outpatient: only 2 diag columns"},
+        "DIAG_CD_2":           {"type": "varchar(8)"}
+      },
+      "diag_columns": ["DIAG_CD_1","DIAG_CD_2"],
+      "extraction_table": "Re_all_other_therapy",
+      "extraction_procedure": "Re_all_other_therapy_loop"
+    },
+
+    "other_therapy1315": {
+      "era": "MAX 2013-2015",
+      "type": "outpatient",
+      "years": [2013, 2014, 2015],
+      "year_column": "YR_NUM",
+      "patient_id_column": "patient_id",
+      "columns": {
+        "patient_id":          {"type": "varchar(40)"},
+        "BENE_ID":             {"type": "varchar(15)"},
+        "STATE_CD":            {"type": "varchar(2)"},
+        "state_key":           {"type": "int",    "note": "partition key — MUST filter"},
+        "YR_NUM":              {"type": "int",    "note": "year — MUST filter"},
+        "EL_DOB":              {"type": "date"},
+        "EL_SEX_CD":           {"type": "varchar(1)"},
+        "EL_RACE_ETHNCY_CD":   {"type": "varchar(1)"},
+        "srvc_bgn_dt":         {"type": "date"},
+        "srvc_end_dt":         {"type": "date"},
+        "DIAG_CD_1":           {"type": "varchar(8)"},
+        "DIAG_CD_2":           {"type": "varchar(8)"}
+      },
+      "diag_columns": ["DIAG_CD_1","DIAG_CD_2"],
+      "extraction_table": "Re_all_other_therapy1315",
+      "extraction_procedure": "Re_all_other_therapy1315_loop"
+    },
+
+    "taf_inpatient_header": {
+      "era": "TAF 2016-2018",
+      "type": "inpatient",
+      "years": [2016, 2017, 2018],
+      "year_column": "RFRNC_YR",
+      "patient_id_column": "PATIENT_ID",
+      "_note": "TAF era uses UPPERCASE PATIENT_ID, RFRNC_YR instead of YR_NUM, BIRTH_DT instead of EL_DOB, DGNS_CD instead of DIAG_CD, and has 12 diagnosis columns",
+      "columns": {
+        "PATIENT_ID":   {"type": "varchar(40)", "note": "UPPERCASE — different from ERA1/2"},
+        "BENE_ID":      {"type": "varchar(15)"},
+        "STATE_CD":     {"type": "varchar(2)"},
+        "STATE_KEY":    {"type": "int",    "note": "partition key — MUST filter (UPPERCASE)"},
+        "RFRNC_YR":     {"type": "int",    "note": "year — MUST filter (replaces YR_NUM)"},
+        "BIRTH_DT":     {"type": "date",   "note": "replaces EL_DOB; no sex/race columns in TAF claim tables"},
+        "srvc_bgn_dt":  {"type": "date"},
+        "srvc_end_dt":  {"type": "date"},
+        "DGNS_CD_1":    {"type": "varchar(7)", "note": "TAF uses DGNS_CD not DIAG_CD"},
+        "DGNS_CD_2":    {"type": "varchar(7)"},
+        "DGNS_CD_3":    {"type": "varchar(7)"},
+        "DGNS_CD_4":    {"type": "varchar(7)"},
+        "DGNS_CD_5":    {"type": "varchar(7)"},
+        "DGNS_CD_6":    {"type": "varchar(7)"},
+        "DGNS_CD_7":    {"type": "varchar(7)"},
+        "DGNS_CD_8":    {"type": "varchar(7)"},
+        "DGNS_CD_9":    {"type": "varchar(7)"},
+        "DGNS_CD_10":   {"type": "varchar(7)"},
+        "DGNS_CD_11":   {"type": "varchar(7)"},
+        "DGNS_CD_12":   {"type": "varchar(7)"}
+      },
+      "diag_columns": ["DGNS_CD_1","DGNS_CD_2","DGNS_CD_3","DGNS_CD_4","DGNS_CD_5","DGNS_CD_6","DGNS_CD_7","DGNS_CD_8","DGNS_CD_9","DGNS_CD_10","DGNS_CD_11","DGNS_CD_12"],
+      "extraction_table": "Re_All_taf_inpatient_header",
+      "extraction_procedure": "Re_All_taf_inpatient_header"
+    },
+
+    "taf_other_services_header": {
+      "era": "TAF 2016-2018",
+      "type": "outpatient",
+      "years": [2016, 2017, 2018],
+      "year_column": "RFRNC_YR",
+      "patient_id_column": "PATIENT_ID",
+      "columns": {
+        "PATIENT_ID":   {"type": "varchar(40)"},
+        "BENE_ID":      {"type": "varchar(15)"},
+        "STATE_CD":     {"type": "varchar(2)"},
+        "STATE_KEY":    {"type": "int",    "note": "partition key — MUST filter"},
+        "RFRNC_YR":     {"type": "int",    "note": "year — MUST filter"},
+        "BIRTH_DT":     {"type": "date"},
+        "srvc_bgn_dt":  {"type": "date"},
+        "srvc_end_dt":  {"type": "date"},
+        "DGNS_CD_1":    {"type": "varchar(7)"},
+        "DGNS_CD_2":    {"type": "varchar(7)"}
+      },
+      "diag_columns": ["DGNS_CD_1","DGNS_CD_2"],
+      "extraction_table": "Re_All_other_services_header",
+      "extraction_procedure": "Re_All_other_services_header_loop"
+    }
+  },
+
+  "era_differences": {
+    "_comment": "Key schema differences across the three eras — critical for correct SQL generation",
+    "patient_id":    {"ERA1_ERA2": "patient_id (lowercase)", "TAF": "PATIENT_ID (uppercase)"},
+    "year_column":   {"ERA1_ERA2": "YR_NUM",                 "TAF": "RFRNC_YR"},
+    "dob_column":    {"ERA1_ERA2": "EL_DOB",                 "TAF": "BIRTH_DT"},
+    "sex_column":    {"ERA1_ERA2": "EL_SEX_CD",              "TAF": "not available in claim table"},
+    "race_column":   {"ERA1_ERA2": "EL_RACE_ETHNCY_CD",      "TAF": "not available in claim table"},
+    "diag_prefix":   {"ERA1_ERA2": "DIAG_CD_",               "TAF": "DGNS_CD_"},
+    "diag_count":    {"inpatient_ERA1_ERA2": 9,              "inpatient_TAF": 12, "outpatient_all": 2},
+    "state_key_case":{"ERA1_ERA2": "state_key (lowercase)", "TAF": "STATE_KEY (uppercase)"}
+  },
+
+  "intermediate_tables": {
+    "_comment": "Tables created by the pipeline steps. Not in cms_source — created in the working schema.",
+
+    "Re_all_inpatient": {
+      "created_by": "step1_extraction/Re_all_inpatient.sql",
+      "source": "cms_source.inpatient",
+      "columns": ["patient_id","BENE_ID","STATE_CD","state_key","YR_NUM","EL_DOB","EL_SEX_CD","EL_RACE_ETHNCY_CD","srvc_bgn_dt","srvc_end_dt","DIAG_CD_1..9"]
+    },
+    "Re_all_inpatient1315": {
+      "created_by": "step1_extraction/Re_all_inpatient1315.sql",
+      "source": "cms_source.inpatient1315",
+      "columns": ["patient_id","BENE_ID","STATE_CD","state_key","YR_NUM","EL_DOB","EL_SEX_CD","EL_RACE_ETHNCY_CD","srvc_bgn_dt","srvc_end_dt","DIAG_CD_1..9"]
+    },
+    "Re_all_other_therapy": {
+      "created_by": "step1_extraction/Re_all_other_therapy.sql",
+      "source": "cms_source.other_therapy",
+      "columns": ["patient_id","BENE_ID","STATE_CD","state_key","YR_NUM","EL_DOB","EL_SEX_CD","EL_RACE_ETHNCY_CD","srvc_bgn_dt","srvc_end_dt","DIAG_CD_1","DIAG_CD_2"]
+    },
+    "Re_all_other_therapy1315": {
+      "created_by": "step1_extraction/Re_all_other_therapy1315.sql",
+      "source": "cms_source.other_therapy1315",
+      "columns": ["patient_id","BENE_ID","STATE_CD","state_key","YR_NUM","EL_DOB","EL_SEX_CD","EL_RACE_ETHNCY_CD","srvc_bgn_dt","srvc_end_dt","DIAG_CD_1","DIAG_CD_2"]
+    },
+    "Re_All_other_services_header": {
+      "created_by": "step1_extraction/Re_All_other_services_header.sql",
+      "source": "cms_source.taf_other_services_header",
+      "columns": ["PATIENT_ID","BENE_ID","STATE_CD","STATE_KEY","RFRNC_YR","BIRTH_DT","srvc_bgn_dt","srvc_end_dt","DGNS_CD_1","DGNS_CD_2"]
+    },
+    "Re_All_taf_inpatient_header": {
+      "created_by": "step1_extraction/Re_All_taf_inpatient.sql",
+      "source": "cms_source.taf_inpatient_header",
+      "columns": ["PATIENT_ID","BENE_ID","STATE_CD","STATE_KEY","RFRNC_YR","BIRTH_DT","srvc_bgn_dt","srvc_end_dt","DGNS_CD_1..12"]
+    },
+    "all_combine": {
+      "created_by": "step2_combine/combined_inpatient.sql",
+      "sources": ["Re_all_inpatient","Re_all_inpatient1315","Re_all_other_therapy","Re_all_other_therapy1315","Re_All_other_services_header","Re_All_taf_inpatient_header"],
+      "columns": {
+        "PATIENT_ID": "varchar(40)",
+        "BENE_ID":    "varchar(15)",
+        "STATE_CD":   "varchar(2)",
+        "STATE_KEY":  "int",
+        "YR_NUM":     "int — TAF RFRNC_YR mapped here",
+        "BIRTH_DT":   "date — ERA1/2 EL_DOB mapped here",
+        "srvc_bgn_dt":"date",
+        "srvc_end_dt":"date",
+        "DIAG_CD_1..12": "varchar(8/7) — ERA1/2 DIAG_CD mapped, TAF DGNS_CD mapped"
+      },
+      "_note": "Drops EL_SEX_CD and EL_RACE_ETHNCY_CD — these are not recoverable downstream"
+    },
+    "All_Selected_state": {
+      "created_by": "step3_filter/all_selected_state.sql",
+      "source": "all_combine",
+      "filter": "STATE_CD IN ('AL','FL','GA','MS','NC','SC','TN')",
+      "columns": "same as all_combine"
+    },
+    "test_temp_all_in_two_years_GA": {
+      "created_by": "step4_two_year/Loop_all_in_two_years.sql",
+      "source": "All_Selected_state",
+      "filter": "STATE_CD = 'GA' only (CURRENT LIMITATION — not all 7 states)",
+      "columns": {
+        "patient_id": "varchar(40)",
+        "srvc_bgn_DT": "date",
+        "appears_within_2_years": "tinyint — 1 if patient has another claim within 730 days"
+      },
+      "logic": "For each patient-visit, check if there exists a later visit within 2 years (DATEDIFF <= 730)"
+    },
+    "final_patient": {
+      "created_by": "step5_consolidate/step_5.sql",
+      "sources": ["lung_inpatient_records (inpatient)", "lung_patient_records (outpatient)"],
+      "_gap": "lung_inpatient_records and lung_patient_records are undocumented bridge tables not created by this pipeline",
+      "columns": {
+        "patient_id": "varchar(40)",
+        "sex_cd":     "varchar — 'ambiguous' if conflicting across records",
+        "race_cd":    "varchar — 'ambiguous' if conflicting",
+        "bgn_dt":     "date — min srvc_bgn_dt; '1000-01-01' if ambiguous",
+        "end_dt":     "date — max srvc_end_dt; '1000-01-01' if ambiguous",
+        "state_key":  "int or 'ambiguous'",
+        "diag_cd_list": "comma-separated concatenation of all diagnosis codes"
+      }
+    }
+  },
+
+  "reference_tables": {
+    "icd_9_cm": {
+      "columns": {"codes": "varchar(40)"},
+      "purpose": "ICD-9 diabetes diagnosis codes used in WHERE IN filter"
+    },
+    "ICD code": {
+      "_note": "Table name has a space — must be backtick-quoted: `ICD code`",
+      "columns": {
+        "ICD10_code": "varchar",
+        "ICD9_Code": "varchar"
+      },
+      "purpose": "ICD-10 to ICD-9 mapping for cross-era code lookup"
+    },
+    "HCPCS_Codes": {
+      "columns": {"HCPCS_codes": "varchar"},
+      "purpose": "Diabetes-related HCPCS procedure codes"
+    },
+    "state_codes": {
+      "columns": {
+        "state_key": "int",
+        "state_code": "varchar(2)"
+      },
+      "purpose": "Cursor iteration — cross-join with data_years drives the extraction loops"
+    },
+    "data_years": {
+      "columns": {"year_num": "int"},
+      "purpose": "Cursor iteration — provides year values for the extraction loop"
+    }
+  },
+
+  "pipeline_steps": [
+    {"step": 1, "folder": "reference/",          "output": ["icd_9_cm","ICD code","HCPCS_Codes"]},
+    {"step": 2, "folder": "step1_extraction/",   "output": ["Re_all_inpatient","Re_all_inpatient1315","Re_all_other_therapy","Re_all_other_therapy1315","Re_All_other_services_header","Re_All_taf_inpatient_header"]},
+    {"step": 3, "folder": "step2_combine/",      "output": ["all_combine"]},
+    {"step": 4, "folder": "step3_filter/",       "output": ["All_Selected_state"]},
+    {"step": 5, "folder": "step4_two_year/",     "output": ["test_temp_all_in_two_years_GA"], "note": "GA only"},
+    {"step": 6, "folder": "step5_consolidate/",  "output": ["single_row_inpatient","single_row_outpatient","union_patient","single_row_all_patient","ambiguous_*","final_patient"]}
+  ]
+}

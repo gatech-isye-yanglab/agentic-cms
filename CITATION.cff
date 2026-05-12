@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "agentic-cms: Agentic AI for Reproducible Medicaid Research"
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Yang
+    given-names: Shihao
+    affiliation: "Georgia Institute of Technology"
+date-released: 2026-05-12
+license: Apache-2.0
+repository-code: "https://github.com/gatech-isye-yanglab/agentic-cms"
+keywords:
+  - agentic AI
+  - multi-agent systems
+  - HIPAA-safe AI
+  - synthetic claims data
+  - CMS Medicaid
+  - text-to-SQL
+  - biomedical informatics
+  - PheWAS
+preferred-citation:
+  type: software
+  title: "agentic-cms: Agentic AI for Reproducible Medicaid Research"
+  authors:
+    - family-names: Yang
+      given-names: Shihao
+  year: 2026
+  url: "https://github.com/gatech-isye-yanglab/agentic-cms"

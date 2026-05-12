@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-cms"
+version = "0.1.0"
+description = "HIPAA-safe multi-agent LLM system for reproducible Medicaid research, with a schema-exact synthetic CMS Medicaid sandbox."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Shihao Yang" }]
+keywords = [
+    "agentic-ai",
+    "multi-agent",
+    "hipaa-safe",
+    "synthetic-claims-data",
+    "cms-medicaid",
+    "text-to-sql",
+    "biomedical-informatics",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+# Minimal dependencies — enough to build the synthetic sandbox and run
+# its compliance tests. No LLM or DB driver required for the headline
+# `bash synthetic_data/build_cms_source.sh` + `pytest synthetic_data/tests/`
+# path. pytest-subtests gives the readable "25 passed, 83 subtests passed"
+# summary the README quickstart promises.
+dependencies = [
+    "pytest>=7",
+    "pytest-subtests>=0.11",
+]
+
+[project.optional-dependencies]
+# Multi-agent prototype — Azure GPT-4o ReAct loop in tests/.
+agent = [
+    "langchain>=0.3",
+    "langchain-openai>=0.2",
+    "langchain-core>=0.3",
+    "langchain-community>=0.3",
+    "azure-identity>=1.15",
+    "python-dotenv>=1.0",
+]
+# MySQL backend — for the gold-standard pipelines and the toy_db fixture.
+mysql = [
+    "mysql-connector-python>=9.0",
+]
+# Everything (development install).
+all = [
+    "agentic-cms[agent,mysql]",
+]
+
+[project.urls]
+Repository = "https://github.com/gatech-isye-yanglab/agentic-cms"
+Issues = "https://github.com/gatech-isye-yanglab/agentic-cms/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agents*", "knowledge*"]
+exclude = ["tests*", "synthetic_data*", "pipelines*", "cohort_identification*", "toy_db*"]
+
+# Default pytest scope = the synthetic-data compliance harness only.
+# This is the headline reproducibility path and runs without MySQL or
+# Azure. The agent demo tests under tests/ require both MySQL and an
+# Azure GPT-4o deployment; opt in explicitly via `pytest tests/`.
+[tool.pytest.ini_options]
+testpaths = ["synthetic_data/tests"]

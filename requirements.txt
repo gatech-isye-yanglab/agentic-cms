@@ -1,0 +1,28 @@
+# agentic-cms — pinned dependency list for development installs.
+#
+# For the headline reproducibility path (synthetic data build + tests),
+# only `pytest` is required:
+#
+#     pip install pytest
+#     bash synthetic_data/build_cms_source.sh   # SKIP_MYSQL=1 if no MySQL
+#     pytest synthetic_data/tests/
+#
+# To also run the multi-agent prototype tests in tests/, install the
+# `agent` and `mysql` extras (or just `pip install -r requirements.txt`):
+#
+#     pip install -e ".[all]"
+
+# Core (synthetic-data sandbox + compliance tests)
+pytest>=7
+pytest-subtests>=0.11
+
+# Multi-agent prototype (Azure GPT-4o ReAct loop)
+langchain>=0.3
+langchain-openai>=0.2
+langchain-core>=0.3
+langchain-community>=0.3
+azure-identity>=1.15
+python-dotenv>=1.0
+
+# MySQL driver (gold-standard pipelines + toy_db fixture)
+mysql-connector-python>=9.0

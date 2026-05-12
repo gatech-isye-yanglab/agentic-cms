@@ -1,0 +1,73 @@
+{
+  "_comment": "Row counts from the canonical-run synthetic build. An agent regenerating the artifact should produce row counts within ±5% of these values. Source: build_cms_source.sh end-to-end output, dated 2026-05-06.",
+  "_source": "bash build_cms_source.sh, SEED=42, --n-patients all, DE-SynPUF Sample 1 + CMS Synthetic RIF 2023.",
+  "_python_version": "3.14",
+  "_seed": 42,
+
+  "synthetic_db_table_counts": {
+    "_comment": "Counts in synthetic_data/synthetic_db.sqlite (what synthetic_data/tests/ reads). These are gen_data.py outputs BEFORE load_rif.py runs. load_rif.py only overwrites CSVs consumed by the MySQL load; the SQLite artifact retains gen_data.py's TAF stubs.",
+    "data_years":                       19,
+    "inpatient":                        43209,
+    "inpatient1315":                    27134,
+    "messagelog":                       1,
+    "other_therapy":                    59205,
+    "other_therapy1315":                37663,
+    "personal_summary":                 46265,
+    "personal_summary1315":             29276,
+    "rx":                               23558,
+    "rx1315":                           15145,
+    "state_codes":                      60,
+    "table_counts":                     21,
+    "table_counts_by_state":            2293,
+    "table_osline_counts_by_state":     459,
+    "taf_demog_elig_base":              40811,
+    "taf_inpatient_header":             38355,
+    "taf_inpatient_line":               95598,
+    "taf_other_services_header":        52202,
+    "taf_other_services_line":          104602,
+    "taf_rx_header":                    20829,
+    "taf_rx_line":                      20829
+  },
+
+  "mysql_post_load_rif_taf_counts": {
+    "_comment": "TAF table counts after load_rif.py overwrites the CSVs and load_mysql.sql ingests them. Reflects Synthea-derived ~9k beneficiaries with realistic claim volumes. Only relevant when running the MySQL backend; SQLite tests use synthetic_db_table_counts.",
+    "taf_demog_elig_base":              9179,
+    "taf_inpatient_header":             19235,
+    "taf_inpatient_line":               54016,
+    "taf_other_services_header":        373611,
+    "taf_other_services_line":          533045,
+    "taf_rx_header":                    481032,
+    "taf_rx_line":                      481032
+  },
+
+  "bucket_distribution_pre_rif_overlay": {
+    "_comment": "Pre-RIF distribution from gen_data.py (before TAF tables get overwritten by load_rif.py).",
+    "positive":    46541,
+    "single":      23271,
+    "long_gap":    17452,
+    "wrong_state": 11636,
+    "no_diabetes": 11635,
+    "ambiguous":   5817
+  },
+
+  "rif_oncology_overlay": {
+    "_comment": "Synthea-flagged lung-cancer beneficiaries get appended HCPCS J/C-code rows, distinguishable by CLM_ID prefix 'ONCO'.",
+    "lung_cancer_beneficiaries_detected": 25,
+    "overlay_header_rows":                23,
+    "overlay_line_rows":                  155
+  },
+
+  "synthetic_data_tests": {
+    "_comment": "Result of pytest synthetic_data/tests/ on the canonical build.",
+    "named_tests_total":     25,
+    "named_tests_passed":    25,
+    "subtests_total":        83,
+    "subtests_passed":       83,
+    "wall_time_seconds":     "~1.0"
+  },
+
+  "tolerance_for_behavioral_pass": {
+    "table_row_count_tolerance_pct": 5,
+    "_comment": "An agent regenerating the artifact may use different (but still deterministic) random implementations, e.g. different shuffle order if numpy/Python random behavior shifts across versions. Tolerate ±5% on per-table row counts. Outside this band, flag the divergence."
+  }
+}

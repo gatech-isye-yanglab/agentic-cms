@@ -1,0 +1,868 @@
+{
+  "disease": "Diabetes Mellitus (Type 1 + Type 2, with complications and related endpoints)",
+  "source_project": "agentic-cms diabetes pipeline",
+  "source_files": [
+    "pipelines/diabetes/reference/icd_code.sql (ICD-10 \u2194 ICD-9 paired diabetes diagnosis codes)",
+    "pipelines/diabetes/reference/hcpcs_code.sql (HCPCS codes for diabetes-related procedures/supplies)"
+  ],
+  "inclusion_logic": "Incident diabetes: \u22652 separate claims with qualifying diabetes diagnosis codes on different service dates within a 24-month (730-day) window. Based on a published algorithm combining medication, inpatient discharge, and outpatient visit criteria (ICD-9-CM 250.x1/250.x2/357.2/366.41/362.01\u2013362.07 for inpatient, 250.x0/250.x1/250.x2 and rare supplementary codes 018.7/011.7/015.7/024.57/024.97 for outpatient; ICD-10 equivalents).",
+  "cohort_constraints": {
+    "states": [
+      "AL",
+      "FL",
+      "GA",
+      "MS",
+      "NC",
+      "SC",
+      "TN"
+    ],
+    "study_period_years": "2005\u20132018",
+    "age_restriction": "EL_DOB > 1980-01-01 (\u2264 ~35 y/o at start of study)"
+  },
+  "icd10": [
+    {
+      "code": "E1010",
+      "description": "Type 1 diabetes mellitus with ketoacidosis without coma"
+    },
+    {
+      "code": "E1011",
+      "description": "Type 1 diabetes mellitus with ketoacidosis with coma"
+    },
+    {
+      "code": "E1110",
+      "description": "Type 2 diabetes mellitus with ketoacidosis without coma"
+    },
+    {
+      "code": "E1111",
+      "description": "Type 2 diabetes mellitus with ketoacidosis with coma"
+    },
+    {
+      "code": "E10",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E109",
+      "description": "Type 1 diabetes mellitus without complications"
+    },
+    {
+      "code": "E119",
+      "description": "Type 2 diabetes mellitus without complications"
+    },
+    {
+      "code": "E104",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E114",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E102",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E112",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E103",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E113",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E105",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E115",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "EI20",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "I210",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "I219",
+      "description": "Acute myocardial infarction, unspecified"
+    },
+    {
+      "code": "I63",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "I61",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "I64",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E1152",
+      "description": "Type 2 diabetes mellitus with diabetic peripheral angiopathy with gangrene"
+    },
+    {
+      "code": "I159",
+      "description": "Secondary hypertension, unspecified"
+    },
+    {
+      "code": "I132",
+      "description": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease"
+    },
+    {
+      "code": "I96",
+      "description": "Gangrene, not elsewhere classified"
+    },
+    {
+      "code": "L974",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "L975",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "L976",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "N181",
+      "description": "Chronic kidney disease, stage 1"
+    },
+    {
+      "code": "N182",
+      "description": "Chronic kidney disease, stage 2 (mild)"
+    },
+    {
+      "code": "N183",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "N184",
+      "description": "Chronic kidney disease, stage 4 (severe)"
+    },
+    {
+      "code": "N189",
+      "description": "Chronic kidney disease, unspecified"
+    },
+    {
+      "code": "I120",
+      "description": "Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease"
+    },
+    {
+      "code": "I131",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "I739",
+      "description": "Peripheral vascular disease, unspecified"
+    },
+    {
+      "code": "I7389",
+      "description": "Other specified peripheral vascular diseases"
+    },
+    {
+      "code": "H369",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H368",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H360",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "K3184",
+      "description": "Gastroparesis"
+    },
+    {
+      "code": "K3185",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "L0291",
+      "description": "Cutaneous abscess, unspecified"
+    },
+    {
+      "code": "L03211",
+      "description": "Cellulitis of face"
+    },
+    {
+      "code": "L03212",
+      "description": "Acute lymphangitis of face"
+    },
+    {
+      "code": "L03221",
+      "description": "Cellulitis of neck"
+    },
+    {
+      "code": "L03222",
+      "description": "Acute lymphangitis of neck"
+    },
+    {
+      "code": "M897",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "M898",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "R739",
+      "description": "Hyperglycemia, unspecified"
+    },
+    {
+      "code": "R7301",
+      "description": "Impaired fasting glucose"
+    },
+    {
+      "code": "R7302",
+      "description": "Impaired glucose tolerance (oral)"
+    },
+    {
+      "code": "R7303",
+      "description": "Prediabetes"
+    },
+    {
+      "code": "E1000",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E1001",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E1100",
+      "description": "Type 2 diabetes mellitus with hyperosmolarity without nonketotic hyperglycemic-hyperosmolar coma (NKHHC)"
+    },
+    {
+      "code": "E1101",
+      "description": "Type 2 diabetes mellitus with hyperosmolarity with coma"
+    },
+    {
+      "code": "I420",
+      "description": "Dilated cardiomyopathy"
+    },
+    {
+      "code": "I429",
+      "description": "Cardiomyopathy, unspecified"
+    },
+    {
+      "code": "G632",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "G590",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H350",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H353",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H358",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "E088",
+      "description": "Diabetes mellitus due to underlying condition with unspecified complications"
+    },
+    {
+      "code": "E089",
+      "description": "Diabetes mellitus due to underlying condition without complications"
+    },
+    {
+      "code": "E098",
+      "description": "Drug or chemical induced diabetes mellitus with unspecified complications"
+    },
+    {
+      "code": "L97511",
+      "description": "Non-pressure chronic ulcer of other part of right foot limited to breakdown of skin"
+    },
+    {
+      "code": "L97512",
+      "description": "Non-pressure chronic ulcer of other part of right foot with fat layer exposed"
+    },
+    {
+      "code": "L97519",
+      "description": "Non-pressure chronic ulcer of other part of right foot with unspecified severity"
+    },
+    {
+      "code": "H3610",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H3611",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H3612",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "L9781",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "L9782",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "L9789",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "I129",
+      "description": "Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+    },
+    {
+      "code": "E160",
+      "description": "Drug-induced hypoglycemia without coma"
+    },
+    {
+      "code": "E161",
+      "description": "Other hypoglycemia"
+    },
+    {
+      "code": "E1151",
+      "description": "Type 2 diabetes mellitus with diabetic peripheral angiopathy without gangrene"
+    },
+    {
+      "code": "L9701",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "L9702",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H281",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "H282",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "T8131",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    },
+    {
+      "code": "T814",
+      "description": "(description not found in FY2026 CMS leaf list \u2014 likely a category-level or non-leaf code)"
+    }
+  ],
+  "icd9": [
+    {
+      "code": "25010",
+      "description": "Diabetes with ketoacidosis, type II or unspecified type, not stated as uncontrolled"
+    },
+    {
+      "code": "25011",
+      "description": "Diabetes with ketoacidosis, type I [juvenile type], not stated as uncontrolled"
+    },
+    {
+      "code": "25001",
+      "description": "Diabetes mellitus without mention of complication, type I [juvenile type], not stated as uncontrolled"
+    },
+    {
+      "code": "25000",
+      "description": "Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled"
+    },
+    {
+      "code": "25061",
+      "description": "Diabetes with neurological manifestations, type I [juvenile type], not stated as uncontrolled"
+    },
+    {
+      "code": "25060",
+      "description": "Diabetes with neurological manifestations, type II or unspecified type, not stated as uncontrolled"
+    },
+    {
+      "code": "25041",
+      "description": "Diabetes with renal manifestations, type I [juvenile type], not stated as uncontrolled"
+    },
+    {
+      "code": "25040",
+      "description": "Diabetes with renal manifestations, type II or unspecified type, not stated as uncontrolled"
+    },
+    {
+      "code": "25051",
+      "description": "Diabetes with ophthalmic manifestations, type I [juvenile type], not stated as uncontrolled"
+    },
+    {
+      "code": "25050",
+      "description": "Diabetes with ophthalmic manifestations, type II or unspecified type, not stated as uncontrolled"
+    },
+    {
+      "code": "25071",
+      "description": "Diabetes with peripheral circulatory disorders, type I [juvenile type], not stated as uncontrolled"
+    },
+    {
+      "code": "25070",
+      "description": "Diabetes with peripheral circulatory disorders, type II or unspecified type, not stated as uncontrolled"
+    },
+    {
+      "code": "4111",
+      "description": "Intermediate coronary syndrome"
+    },
+    {
+      "code": "4101",
+      "description": "(description not found in CMS v32 ICD-9-CM diagnosis list)"
+    },
+    {
+      "code": "4109",
+      "description": "(description not found in CMS v32 ICD-9-CM diagnosis list)"
+    },
+    {
+      "code": "43491",
+      "description": "Cerebral artery occlusion, unspecified with cerebral infarction"
+    },
+    {
+      "code": "431",
+      "description": "Intracerebral hemorrhage"
+    },
+    {
+      "code": "436",
+      "description": "Acute, but ill-defined, cerebrovascular disease"
+    },
+    {
+      "code": "7854",
+      "description": "Gangrene"
+    },
+    {
+      "code": "40493",
+      "description": "Hypertensive heart and chronic kidney disease, unspecified, with heart failure and chronic kidney disease stage V or end stage renal disease"
+    },
+    {
+      "code": "70707",
+      "description": "Pressure ulcer, heel"
+    },
+    {
+      "code": "70706",
+      "description": "Pressure ulcer, ankle"
+    },
+    {
+      "code": "7079",
+      "description": "Chronic ulcer of unspecified site"
+    },
+    {
+      "code": "5851",
+      "description": "Chronic kidney disease, Stage I"
+    },
+    {
+      "code": "5852",
+      "description": "Chronic kidney disease, Stage II (mild)"
+    },
+    {
+      "code": "5853",
+      "description": "Chronic kidney disease, Stage III (moderate)"
+    },
+    {
+      "code": "5854",
+      "description": "Chronic kidney disease, Stage IV (severe)"
+    },
+    {
+      "code": "5859",
+      "description": "Chronic kidney disease, unspecified"
+    },
+    {
+      "code": "40391",
+      "description": "Hypertensive chronic kidney disease, unspecified, with chronic kidney disease stage V or end stage renal disease"
+    },
+    {
+      "code": "4439",
+      "description": "Peripheral vascular disease, unspecified"
+    },
+    {
+      "code": "44389",
+      "description": "Other specified peripheral vascular diseases"
+    },
+    {
+      "code": "3629",
+      "description": "Unspecified retinal disorder"
+    },
+    {
+      "code": "36283",
+      "description": "Retinal edema"
+    },
+    {
+      "code": "36291",
+      "description": "(description not found in CMS v32 ICD-9-CM diagnosis list)"
+    },
+    {
+      "code": "53783",
+      "description": "Angiodysplasia of stomach and duodenum with hemorrhage"
+    },
+    {
+      "code": "6829",
+      "description": "Cellulitis and abscess of unspecified sites"
+    },
+    {
+      "code": "6820",
+      "description": "Cellulitis and abscess of face"
+    },
+    {
+      "code": "6821",
+      "description": "Cellulitis and abscess of neck"
+    },
+    {
+      "code": "6824",
+      "description": "Cellulitis and abscess of hand, except fingers and thumb"
+    },
+    {
+      "code": "6826",
+      "description": "Cellulitis and abscess of leg, except foot"
+    },
+    {
+      "code": "73399",
+      "description": "Other disorders of bone and cartilage"
+    },
+    {
+      "code": "7906",
+      "description": "Other abnormal blood chemistry"
+    },
+    {
+      "code": "79021",
+      "description": "Impaired fasting glucose"
+    },
+    {
+      "code": "79022",
+      "description": "Impaired glucose tolerance test (oral)"
+    },
+    {
+      "code": "79029",
+      "description": "Other abnormal glucose"
+    },
+    {
+      "code": "25020",
+      "description": "Diabetes with hyperosmolarity, type II or unspecified type, not stated as uncontrolled"
+    },
+    {
+      "code": "25021",
+      "description": "Diabetes with hyperosmolarity, type I [juvenile type], not stated as uncontrolled"
+    },
+    {
+      "code": "4254",
+      "description": "Other primary cardiomyopathies"
+    },
+    {
+      "code": "4259",
+      "description": "Secondary cardiomyopathy, unspecified"
+    },
+    {
+      "code": "3572",
+      "description": "Polyneuropathy in diabetes"
+    },
+    {
+      "code": "3558",
+      "description": "Mononeuritis of lower limb, unspecified"
+    },
+    {
+      "code": "36210",
+      "description": "Background retinopathy, unspecified"
+    },
+    {
+      "code": "36250",
+      "description": "Macular degeneration (senile), unspecified"
+    },
+    {
+      "code": "24980",
+      "description": "Secondary diabetes mellitus with other specified manifestations, not stated as uncontrolled, or unspecified"
+    },
+    {
+      "code": "24900",
+      "description": "Secondary diabetes mellitus without mention of complication, not stated as uncontrolled, or unspecified"
+    },
+    {
+      "code": "36201",
+      "description": "Background diabetic retinopathy"
+    },
+    {
+      "code": "36207",
+      "description": "Diabetic macular edema"
+    },
+    {
+      "code": "36202",
+      "description": "Proliferative diabetic retinopathy"
+    },
+    {
+      "code": "40390",
+      "description": "Hypertensive chronic kidney disease, unspecified, with chronic kidney disease stage I through stage IV, or unspecified"
+    },
+    {
+      "code": "2512",
+      "description": "Hypoglycemia, unspecified"
+    },
+    {
+      "code": "70701",
+      "description": "Pressure ulcer, elbow"
+    },
+    {
+      "code": "36641",
+      "description": "Diabetic cataract"
+    },
+    {
+      "code": "36645",
+      "description": "Toxic cataract"
+    },
+    {
+      "code": "99831",
+      "description": "Disruption of internal operation (surgical) wound"
+    },
+    {
+      "code": "99859",
+      "description": "Other postoperative infection"
+    }
+  ],
+  "hcpcs": [
+    {
+      "code": "G0101",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4224",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "G0245",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "G0257",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "J1815",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4206",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4207",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4208",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A5210",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A9276",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A9277",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A5510",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A5512",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "L3000",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E2402",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A6550",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A7000",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "G0109",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4253",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4259",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A5500",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A5501",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E1399",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "B4152",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "B4153",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4233",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4234",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4250",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4252",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A5253",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4257",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E2100",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "J1817",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "J1818",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "J1819",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E0784",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E0781",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E0782",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A9274",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A9280",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "B4154",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "K0554",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "K0553",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "K0552",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E0780",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "B4150",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E2101",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E2150",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A4256",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E0783",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A9286",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A9287",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "A9288",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E0603",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "E0604",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "G0108",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    },
+    {
+      "code": "J3490",
+      "description": "(description not found in Apr 2026 HCPCS file)"
+    }
+  ],
+  "notes": [
+    "The ICD code.sql pairs list reflects the project's chosen (ICD-10, ICD-9) equivalences. Some ICD-10 entries (E10, EI20) are category or typo'd codes (EI20 likely a typo for I20) \u2014 retained here as-is for historical fidelity.",
+    "Descriptions are sourced from CDC ICD-10-CM FY2026 and CMS v32 ICD-9-CM diagnosis files. Category-level ICD-10 codes like 'E10' are not in the leaf-code file and show a null-description note.",
+    "HCPCS descriptions are from CMS April 2026 HCPC2026_APR_ANWEB.txt.",
+    "This code set is the canonical 'known-good' used to validate new lookup results against the existing diabetes SQL pipeline."
+  ],
+  "generated_at": "2026-04-17",
+  "generator": "icd_code_reference agent (Phase 2 build)"
+}

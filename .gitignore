@@ -1,0 +1,56 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# Real PHI / outputs of real-CMS runs (HARD RULE: never commit)
+real_data/
+phi/
+real_cms_outputs/
+production_results/
+
+# Build artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+build/
+dist/
+*.egg-info/
+
+# Cohort-identification reference databases (publicly redownloadable; ~400 MB)
+cohort_identification/databases/*
+!cohort_identification/databases/README.md
+
+# Synthetic data large files (regenerable / publicly redownloadable)
+synthetic_data/synthetic_db.sqlite
+synthetic_data/synthetic_db.sqlite-journal
+synthetic_data/data/
+synthetic_data/csv/
+synthetic_data/*.csv.gz
+synthetic_data/synthetic_rif_2023
+synthetic_data/synthetic_rif_2023/
+synthetic_data/de_synpuf_2008_2010
+synthetic_data/de_synpuf_2008_2010/
+synthetic_data/schema_mysql.sql
+synthetic_data/schema_sqlite.sql
+synthea_output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Cowork session machinery (do not publish)
+.claude/
+STARTER_PROMPT.md
