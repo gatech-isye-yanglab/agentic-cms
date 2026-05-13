@@ -76,3 +76,6 @@ exclude = ["tests*", "synthetic_data*", "pipelines*", "cohort_identification*", 
 # Azure GPT-4o deployment; opt in explicitly via `pytest tests/`.
 [tool.pytest.ini_options]
 testpaths = ["synthetic_data/tests"]
+# Show reasons for skipped tests inline so e.g. the "build the DB first"
+# preflight banner is visible without -rs on the command line.
+addopts = "-rs"

@@ -1,17 +1,17 @@
 # Lung cancer ICD-9 / ICD-10 — recovered benchmark (legacy commercial-claims source)
 
-> **⚠️ Forward-looking note (2026-04-21):** this document preserves the **historical** a legacy commercial-claims study phecode v1.2 anchor (`165.1`). Going forward, use PhecodeX v1.0 anchor **`CA_102.1`** (phecode_num `102.1`) — same clinical concept ("Malignant neoplasm of the of bronchus and lung"), different numbering. The v1.2 code space does not exist in our local PheWAS download and will not return rows against the MySQL `phewas` DB. The current reproducible recipe lives in [`build_reference_tables.sql`](build_reference_tables.sql). See [`../../../cohort_identification/examples/phewas_anchor_reference.md`](../../../cohort_identification/examples/phewas_anchor_reference.md) for the v1.2-vs-PhecodeX crosswalk across all diseases.
+> **⚠️ Forward-looking note (2026-04-21):** this document preserves the **historical** prior commercial-claims study phecode v1.2 anchor (`165.1`). Going forward, use PhecodeX v1.0 anchor **`CA_102.1`** (phecode_num `102.1`) — same clinical concept ("Malignant neoplasm of the of bronchus and lung"), different numbering. The v1.2 code space does not exist in our local PheWAS download and will not return rows against the MySQL `phewas` DB. The current reproducible recipe lives in [`build_reference_tables.sql`](build_reference_tables.sql). See [`../../../cohort_identification/examples/phewas_anchor_reference.md`](../../../cohort_identification/examples/phewas_anchor_reference.md) for the v1.2-vs-PhecodeX crosswalk across all diseases.
 
 **Status.** The CMS-side `<scratch_db>.ICD910_lung_cancer_codes` table was purged
-from the institutional VM and is no longer recoverable from the live database. The
-a legacy commercial-claims study lung-cancer paper (the principal investigator's prior study) uses the **same PheWAS-anchored
-pattern** for its lung-cancer identifier set, so its cohort-definition code is
-the cleanest available reconstruction of what the gold-standard author's CMS reference table
-would have held.
+from the institutional VM and is no longer recoverable from the live database.
+The PI's prior commercial-claims lung-cancer study uses the **same
+PheWAS-anchored pattern** for its lung-cancer identifier set, so its
+cohort-definition code is the cleanest available reconstruction of what the
+gold-standard author's CMS reference table would have held.
 
-The a legacy commercial-claims study schema is different (SQL Server, `a legacy commercial-claims studyDataWarehouse.dbo.MedicalClaims`
-with `DiagnosisCode1..6`, not CMS Medicaid TAF/MAX); but **the ICD set itself
-is schema-independent** — the PheWAS anchor code resolves to the same ICD-9
+The prior-study schema is different (SQL Server, a `DataWarehouse.dbo.MedicalClaims`-shaped
+table with `DiagnosisCode1..6`, not CMS Medicaid TAF/MAX); but **the ICD set
+itself is schema-independent** — the PheWAS anchor code resolves to the same ICD-9
 and ICD-10 children regardless of which claims database they are applied
 against.
 
@@ -53,7 +53,7 @@ concrete pattern that belongs in `../../cohort_identification/`.
 
 ## Expected ICD-10 output set (from the gold-standard author's CMS pipeline)
 
-`<scratch_db>.lung_cancer_loop` (in `../gold-standard SQL (MAX-era cohort, partner-collated)` lines
+`<scratch_db>.lung_cancer_loop` (in `../gold-standard MAX-era SQL` lines
 3212–3238) contains the inline ICD list that was used in the CMS pipeline.
 This is the **same set** the PheWAS 165.1 anchor would produce after the
 `Personal history` exclusion:
@@ -76,10 +76,10 @@ and lung)`.
 
 ---
 
-## Clinical refinements from the a legacy commercial-claims study study (Nov 22, 2017 clinician meeting)
+## Clinical refinements from the prior commercial-claims study (Nov 22, 2017 clinician meeting)
 
 Feedback from Ken Kehl + Zak + Kun at a clinician meeting on Nov 22, 2017
-(from the principal investigator's a legacy commercial-claims study-paper research log — `a legacy commercial-claims studyLungCancer/NOV2017/nov22.tex`,
+(from the principal investigator's prior-study research log — `prior-study log NOV2017/nov22.tex`,
 not included in this repo; content relevant to the gold standard is
 transcribed below):
 
@@ -116,7 +116,7 @@ GROUP BY MemberID
 HAVING count(*) >= 3
 ```
 
-The a legacy commercial-claims study study used **`count(*) >= 3`** diagnostic hits (strict) as the
+The prior commercial-claims study used **`count(*) >= 3`** diagnostic hits (strict) as the
 lung-cancer cohort-membership criterion. The CMS pipeline does not impose a
 count threshold at this stage — it accepts any claim with a qualifying
 diagnosis — because a different downstream filter (the v3/v4/v6/v7 tables in
@@ -129,11 +129,11 @@ ICD set can support either threshold.
 
 - PheWAS-anchored SQL: `../gold_standard_legacy/lung_cancer.sql:41-56`
 - Strict count criterion: `../gold_standard_legacy/lung_cancer.sql:106-110`
-- Clinician-driven exclusions: the principal investigator's a legacy commercial-claims study-paper research log —
-  `a legacy commercial-claims studyLungCancer/NOV2017/nov22.tex:13, 33` (log not in repo; content
+- Clinician-driven exclusions: the principal investigator's prior-study research log —
+  `prior-study log NOV2017/nov22.tex:13, 33` (log not in repo; content
   transcribed above).
-- Inline ICD set used in CMS pipeline: `../gold-standard SQL (MAX-era cohort, partner-collated):3212-3238`
-- PheWAS tables on the a legacy commercial-claims study SQL Server: `PheWAS.dbo.Icd9CodeTranslation`,
+- Inline ICD set used in CMS pipeline: `../gold-standard MAX-era SQL:3212-3238`
+- PheWAS tables on the prior commercial-claims study SQL Server: `PheWAS.dbo.Icd9CodeTranslation`,
   `PheWAS.dbo.Icd10CodeTranslation` (Chirag Patel's lab PheWAS Catalog)
 
 ## Agent-benchmark framing
@@ -149,6 +149,6 @@ Given NL prompt *"identify patients with lung cancer"*, the agent should:
    these are the clinician-judgment handles.
 
 The agent's output, compared against the list above, is the precision/recall
-benchmark. the gold-standard author's CMS list is the gold standard; the a legacy commercial-claims study list is the
+benchmark. the gold-standard author's CMS list is the gold standard; the prior commercial-claims study list is the
 recovered reconstruction of that gold standard, which happened to be
 generated by the PheWAS-anchor recipe directly in SQL.

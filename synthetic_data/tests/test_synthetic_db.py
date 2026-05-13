@@ -33,6 +33,30 @@ ROOT = os.path.dirname(HERE)  # synthetic_data/
 DB   = os.path.join(ROOT, "synthetic_db.sqlite")
 CSV  = os.path.join(ROOT, "columns_formats.csv")
 
+# Friendly preflight: synthetic_db.sqlite is a build artifact, not committed.
+# If you skip the build step and run pytest directly, print a clear banner
+# to stderr and skip cleanly rather than letting tests die on an opaque
+# sqlite3.OperationalError("unable to open database file").
+_PREFLIGHT_MSG = (
+    "\n" + "=" * 70 + "\n"
+    "  synthetic_db.sqlite not found.\n"
+    "\n"
+    f"  Expected at: {DB}\n"
+    "\n"
+    "  This file is a build artifact (not committed). Build it first:\n"
+    "      SKIP_MYSQL=1 bash synthetic_data/build_cms_source.sh\n"
+    "\n"
+    "  The build needs the DE-SynPUF + CMS Synthetic RIF 2023 inputs —\n"
+    "  see synthetic_data/download_synthetic_data.sh for sources.\n"
+    + "=" * 70 + "\n"
+)
+if not os.path.isfile(DB):
+    print(_PREFLIGHT_MSG, file=sys.stderr)
+    raise unittest.SkipTest(
+        "synthetic_db.sqlite not found — run "
+        "`SKIP_MYSQL=1 bash synthetic_data/build_cms_source.sh` first"
+    )
+
 EXPECTED_TABLES = [
     "data_years", "inpatient", "inpatient1315", "messagelog",
     "other_therapy", "other_therapy1315",
