@@ -10,7 +10,7 @@ A natural-language biomedical research question (e.g. *"identify
 incident diabetes patients in seven southeast US states with at
 least two qualifying claims within 24 months"*) flows into a
 multi-agent prototype that drafts the corresponding CMS Medicaid SQL
-pipeline. The agent runs only against a schema-exact synthetic CMS
+pipeline. The agent runs only against a schema-faithful synthetic CMS
 sandbox; a credentialed human reviewer is the only path that crosses
 into the real institutional Medicaid database. The synthetic sandbox
 mirrors the real schema's column names, partition rules, and era

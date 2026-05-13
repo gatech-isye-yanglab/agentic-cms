@@ -4,7 +4,7 @@
 
 HIPAA-safe multi-agent LLM system for translating natural-language
 biomedical research questions into validated SQL pipelines against
-CMS Medicaid claims data, paired with the first public schema-exact
+CMS Medicaid claims data, paired with a schema-faithful
 synthetic Medicaid sandbox. See [README.md](README.md) for the
 public-facing pitch.
 
@@ -27,7 +27,7 @@ public-facing pitch.
 
 ## File layout
 
-- [synthetic_data/](synthetic_data/) — schema-exact synthetic CMS
+- [synthetic_data/](synthetic_data/) — schema-faithful synthetic CMS
   database generator. Run
   `SKIP_MYSQL=1 bash synthetic_data/build_cms_source.sh` to (re)build
   the SQLite artifact + `pytest synthetic_data/tests/` to validate.

@@ -12,7 +12,7 @@ verified behaviorally — not byte-identical.
 `agentic-cms` is a HIPAA-safe multi-agent LLM system that translates
 natural-language biomedical research questions into validated SQL
 pipelines against CMS Medicaid claims data, paired with the first
-public schema-exact synthetic Medicaid sandbox.
+public schema-faithful synthetic Medicaid sandbox.
 
 Three contributions to regenerate:
 
@@ -39,7 +39,7 @@ human input.
    directory, ask the user where to write the regenerated artifact.
    Default: `../regenerated/` (sibling of `seed/`).
 2. **Read [`prompts/01_schema_to_synthetic_db.md`](prompts/01_schema_to_synthetic_db.md).**
-   Generate `synthetic_data/` — the schema-exact synthetic CMS database
+   Generate `synthetic_data/` — the schema-faithful synthetic CMS database
    generator. Inputs: [`data/columns_formats.csv`](data/columns_formats.csv).
    Validate: `SKIP_MYSQL=1 bash synthetic_data/build_cms_source.sh`
    produces 21 tables / ~657k rows.

@@ -6,6 +6,21 @@ is built, what it does and doesn't cover, and why it's faithful enough
 to the institutional schema that SQL passing here either passes
 against real data or fails for a non-schema reason.
 
+**Framing.** This sandbox is engineered as a **structural test
+fixture for agent development** — a compiler-and-test harness, not
+training data and not a medical-inference substrate. Real-warehouse
+frequencies, conditional distributions, and value patterns are *not*
+required to match. The validity criterion is **surface coverage with
+nonzero return:** the dictionary of ICD-9/10, HCPCS, and NDC codes is
+covered; missingness is realistic; and enough plausible code
+co-occurrence is present that agent-generated queries return nonzero
+rows. The sandbox is also low-risk on the data-governance side
+because it extends [CMS's Synthea-derived Synthetic RIF 2023](https://data.cms.gov/collection/synthetic-medicare-enrollment-fee-for-service-claims-and-prescription-drug-event)
+(itself a CMS-public synthetic-data release) — releaseability is
+established by precedent, not asserted here, and there is no
+patient-derived training data and no membership-inference attack
+surface.
+
 ## Bottom line
 
 `bash synthetic_data/build_cms_source.sh` (or
@@ -166,17 +181,20 @@ against one runs against the other.
    filters, indexes, and cursor pattern as the institutional
    production server, so an agent passing synthetic cannot fail
    production for partition reasons.
-4. **The Medicaid TAF synthetic-data gap is a publishable
-   contribution.** No public synthetic Medicaid dataset exists today.
-   Researchers either use real PHI or hand-roll synthetic. A Synthea
-   TAF exporter validated against an institutional schema would be a
-   directly citable short paper.
+4. **Synthea TAF extension as research methodology.** Public
+   synthetic Medicaid data is sparse; researchers typically either
+   use real PHI or hand-roll synthetic. Extending Synthea's
+   Medicare-RIF output onto the three CMS Medicaid schema eras, plus
+   targeted disease-specific overlays where Synthea is silent, is a
+   directly citable methodology contribution — and a portable
+   pattern for any institution that needs a structural sandbox for
+   agent development on its own claims warehouse.
 
 ## Five discrete deliverables that can be cited individually
 
 1. [`cohort_identification/`](../cohort_identification/) — public-data PheWAS / ICD / HCPCS / NDC reference loader with the 3-step disease-code recipe.
 2. [`gen_ddl.py`](../synthetic_data/gen_ddl.py) + [`columns_formats.csv`](../synthetic_data/columns_formats.csv) — era-aware schema-crosswalk DDL generator (MySQL + SQLite).
-3. [`load_rif.py`](../synthetic_data/load_rif.py) + [`ssa_state_crosswalk.py`](../synthetic_data/ssa_state_crosswalk.py) — Synthea RIF → TAF transformer (the publishable "TAF exporter").
+3. [`load_rif.py`](../synthetic_data/load_rif.py) + [`ssa_state_crosswalk.py`](../synthetic_data/ssa_state_crosswalk.py) — Synthea RIF → TAF transformer (the citable "TAF extension" methodology).
 4. [`knowledge/constraints.py`](../knowledge/constraints.py) + [`agents/tools/mysql_tools.py`](../agents/tools/mysql_tools.py) — partition-filter Critic + statement-timeout-with-`KILL` tool layer; reusable HIPAA-style guardrails for any agent-on-claims-DB project.
 5. [`tests/test_synthetic_db.py`](../synthetic_data/tests/test_synthetic_db.py) — 25-test compliance harness that any future synthetic CMS dataset can be validated against.
 

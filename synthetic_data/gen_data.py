@@ -1,5 +1,5 @@
 """
-gen_data.py — Populate the schema-exact synthetic DB.
+gen_data.py — Populate the schema-faithful synthetic DB.
 
 Output modes:
     --sqlite PATH    create/overwrite a SQLite DB at PATH and load into it

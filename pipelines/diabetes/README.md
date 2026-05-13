@@ -133,7 +133,7 @@ DB_USER=foo DB_PASS=bar DB_NAME=mydb bash run_pipeline.sh
 
 Prerequisites:
 1. MySQL reachable at `127.0.0.1:3306` with the `cms_source` schema populated
-   — see [`../../synthetic_data/`](../../synthetic_data/) for the schema-exact synthetic
+   — see [`../../synthetic_data/`](../../synthetic_data/) for the schema-faithful synthetic
    sandbox.
 2. The reference tables (`icd_9_cm`, `ICD code`, `HCPCS_Codes`) must exist
    in the working DB; `run_pipeline.sh` runs the `reference/*.sql` files

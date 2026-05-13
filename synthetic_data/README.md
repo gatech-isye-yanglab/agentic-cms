@@ -15,11 +15,11 @@ The synthetic build is a **hybrid**: `gen_data.py` supplies the MAX era + meta-t
 
 | File | Purpose |
 |---|---|
-| `columns_formats.csv` | Source of truth. Institutional schema export — 21 tables, 2,533 columns. Do not hand-edit. Provenance: column metadata only (no data), exported from a real CMS Medicaid MySQL warehouse to enable schema-exact synthetic generation. |
+| `columns_formats.csv` | Source of truth. Institutional schema export — 21 tables, 2,533 columns. Do not hand-edit. Provenance: column metadata only (no data), exported from a real CMS Medicaid MySQL warehouse to enable schema-faithful synthetic generation. |
 | `gen_ddl.py` | Parses `columns_formats.csv` → emits `schema_mysql.sql` and `schema_sqlite.sql`. |
 | `schema_mysql.sql` / `schema_sqlite.sql` | 21 `CREATE TABLE`s, auto-generated. |
 | `gen_data.py` | **Tier 1 generator.** Python-only random draws. Supplies MAX-era tables + meta-tables + initial TAF-era stubs (which Tier 2a overwrites). Still used end-to-end if you don't want the RIF step. |
-| `load_rif.py` | **Tier 2a loader.** Transforms CMS Synthetic RIF 2023 (pipe-delimited, Medicare Part A/B/D) into our schema-exact TAF tables, with SSA → postal state-code translation and a Python oncology-HCPCS overlay for the lung-cancer cohort. |
+| `load_rif.py` | **Tier 2a loader.** Transforms CMS Synthetic RIF 2023 (pipe-delimited, Medicare Part A/B/D) into our schema-faithful TAF tables, with SSA → postal state-code translation and a Python oncology-HCPCS overlay for the lung-cancer cohort. |
 | `ssa_state_crosswalk.py` | SSA state-code (`'01'`) → USPS postal (`'AL'`) map. Used by `load_rif.py`. |
 | `build_cms_source.sh` | **Orchestrator.** Runs `gen_data.py` → `load_rif.py` → `load_mysql.sql` → pytest. The one command you typically need. |
 | `synthetic_rif_2023/` | Raw CMS RIF CSVs (1 GB, 8 claim types, 11 enrollment years). Input only; not modified. |

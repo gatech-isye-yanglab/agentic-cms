@@ -2,7 +2,7 @@
 
 A tiny ~1,400-row MySQL fixture used to drive the agent prototype's
 smoke tests in [`../tests/`](../tests/). **This is a different artifact
-from the schema-exact synthetic CMS sandbox in
+from the schema-faithful synthetic CMS sandbox in
 [`../synthetic_data/`](../synthetic_data/)** — they exist for different
 reasons:
 

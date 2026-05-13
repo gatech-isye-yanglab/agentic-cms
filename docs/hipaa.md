@@ -9,7 +9,7 @@ calls out as future Aims.
 ## Trust boundary — three zones, two crossings
 
 **Zone 1 (public, this repository).** The multi-agent prototype, the
-schema-exact synthetic CMS database, public reference databases
+schema-faithful synthetic CMS database, public reference databases
 (PhecodeX, ICD, HCPCS, NDC, CCSR), and the agent's LLM API calls. **No
 PHI ever lives here, by construction.**
 

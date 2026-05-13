@@ -18,7 +18,7 @@ fixed it.
 
 **Workaround in place (Tier 2a).** `load_rif.py` runs a Python HCPCS overlay after loading RIF: for each Synthea-flagged lung-cancer beneficiary, appends 6-24 synthetic `taf_other_services_line` rows with J/C codes drawn from `HCPCS_CHEMO` / `HCPCS_IMMUNO` pools. Preserves RIF realism for diagnoses / demographics / NDC prescriptions; adds the treatment signal Synthea doesn't emit. This is explicitly flagged as overlay (CLM_ID prefix `ONCO`) so anyone downstream can tell synthetic-overlay rows from real-RIF rows.
 
-**Real fix (Tier 3).** Run Synthea locally with a custom oncology module + RIF exporter that emits Part B J/C codes for treated cancer patients. Would also give us Medicaid TAF (which Synthea doesn't currently export; this is the publishable contribution the project's master CLAUDE.md flags).
+**Real fix (Tier 3).** Run Synthea locally with a custom oncology module + RIF exporter that emits Part B J/C codes for treated cancer patients. Would also give us Medicaid TAF (which Synthea doesn't currently export; this is the citable methodology extension noted in CLAUDE.md).
 
 ---
 

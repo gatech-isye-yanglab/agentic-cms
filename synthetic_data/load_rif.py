@@ -1,6 +1,6 @@
 """
 load_rif.py — transform CMS Synthetic RIF 2023 (Synthea-generated) into
-the schema-exact TAF tables used by `cms_source`.
+the schema-faithful TAF tables used by `cms_source`.
 
 This is the Tier 2a loader: realistic Synthea cohort + timelines +
 demographics + prescription events, with a thin Python overlay that

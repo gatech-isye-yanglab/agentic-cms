@@ -2,8 +2,8 @@
 
 A HIPAA-safe multi-agent LLM system for translating natural-language
 biomedical research questions into validated SQL pipelines against
-CMS Medicaid claims data, paired with the first public schema-exact
-synthetic Medicaid sandbox.
+CMS Medicaid claims data, paired with a schema-faithful synthetic
+Medicaid sandbox (extended from CMS's Synthea-derived public RIF).
 
 ## Why
 
@@ -23,21 +23,31 @@ is the only path that crosses into real PHI.
 
 ## What's in here
 
-Three contributions, each independently citable:
+A HIPAA-safe trust-boundary design as the up-front compliance
+prerequisite, plus two research contributions on top:
 
-1. **HIPAA-safe agentic governance.** Defense-in-depth design,
-   server-enforced partition filter, Critic-based static checks
-   (regex partition + column name) and live checks (output-rows > 0),
-   schema-only data access, statement-timeout-with-`KILL` tool layer.
-   See [`docs/hipaa.md`](docs/hipaa.md).
+**Prerequisite — HIPAA-safe trust boundary.** A three-zone design in
+which the agent has zero network connection to the real Medicaid
+warehouse; a credentialed human reviewer is the sole carrier across
+the boundary. Defense-in-depth is codified in
+[`knowledge/constraints.py`](knowledge/constraints.py) (partition
+Critic, static + live checks),
+[`agents/tools/mysql_tools.py`](agents/tools/mysql_tools.py)
+(statement-timeout-with-`KILL` tool layer), and
+[`synthetic_data/gen_ddl.py`](synthetic_data/gen_ddl.py)
+(era-correct partition indexes). See [`docs/hipaa.md`](docs/hipaa.md).
 
-2. **Schema-exact synthetic CMS Medicaid database.** 21 tables, 2,533
-   columns, three-era schema crosswalk (MAX 2005–2012 / MAX 2013–2015
-   / TAF 2016+), Synthea-derived TAF claims with a Python oncology
-   HCPCS overlay. The first public synthetic Medicaid dataset of its
-   kind. See [`docs/synthetic_data.md`](docs/synthetic_data.md).
+1. **Schema-faithful synthetic CMS Medicaid database, extended from
+   Synthea.** 21 tables, 2,533 columns, three-era schema crosswalk
+   (MAX 2005–2012 / MAX 2013–2015 / TAF 2016+). Extends CMS's
+   Synthea-derived Synthetic RIF 2023 with era-aware reshaping and a
+   targeted overlay for treatment-code patterns Synthea doesn't emit
+   (oncology J/C codes, diabetes HCPCS). Engineered as a *structural
+   test fixture* for agent development — not a distributional
+   substitute for real claims. See
+   [`docs/synthetic_data.md`](docs/synthetic_data.md).
 
-3. **End-to-end multi-agent prototype + canonical research pipelines.**
+2. **End-to-end multi-agent prototype + canonical research pipelines.**
    A LangGraph-style ReAct loop today (Azure GPT-4o, two MySQL tools,
    Critic with retry), with the planned 6-node DAG documented in
    [`docs/architecture.md`](docs/architecture.md). Canonical 5-stage
@@ -76,7 +86,7 @@ pytest synthetic_data/tests/
 
 Expected: `25 passed, 83 subtests passed`.
 
-That gives you a working schema-exact synthetic CMS database with
+That gives you a working schema-faithful synthetic CMS database with
 21 tables and ~657k rows in `synthetic_data/synthetic_db.sqlite`.
 
 To also run the gold-standard pipelines and the agent demo tests,
@@ -110,8 +120,10 @@ trust-boundary diagram, layered controls, and honest gaps are in
 ## Status
 
 **Early public release** accompanying an AWS Agentic AI grant
-proposal (Spring 2026). The schema-exact synthetic CMS database and
-its 25-test compliance harness are complete and runnable today. The
+proposal (Spring 2026): *"An Engineering Pathway of Agentic AI for
+Scalable Medicaid Research."* The schema-faithful synthetic CMS
+database and its 25-test compliance harness are complete and
+runnable today. The
 multi-agent prototype runs as a single ReAct loop driving Azure
 GPT-4o (validated end-to-end on Steps 1 and 2 of the diabetes
 pipeline; saved traces in [`tests/`](tests/)). The 6-node LangGraph

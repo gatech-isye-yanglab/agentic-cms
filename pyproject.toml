@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "agentic-cms"
 version = "0.1.0"
-description = "HIPAA-safe multi-agent LLM system for reproducible Medicaid research, with a schema-exact synthetic CMS Medicaid sandbox."
+description = "HIPAA-safe multi-agent LLM system for reproducible Medicaid research, with a schema-faithful synthetic CMS Medicaid sandbox."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "Apache-2.0" }

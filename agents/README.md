@@ -56,7 +56,7 @@ The end-to-end demo lives at the repo root in
 
 1. Local MySQL with a populated `cms_source` schema — use the small
    fixture in [`../toy_db/`](../toy_db/) for fast loops, or the
-   schema-exact sandbox in [`../synthetic_data/`](../synthetic_data/)
+   schema-faithful sandbox in [`../synthetic_data/`](../synthetic_data/)
    for research-scale.
 2. Azure AI Foundry access (`az login` + `PROJECT_ENDPOINT` in `.env`).
 

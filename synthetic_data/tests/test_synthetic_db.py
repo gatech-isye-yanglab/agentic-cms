@@ -1,5 +1,5 @@
 """
-test_synthetic_db.py — Integration tests for the schema-exact synthetic DB.
+test_synthetic_db.py — Integration tests for the schema-faithful synthetic DB.
 
 Runs against the SQLite build produced by gen_data.py.  Exercises four
 categories:
